@@ -314,7 +314,10 @@ class Disassembler:
             "opcodeStr": self.opcodeStr,
             "arg1Str": self.arg1Str,
             "arg2Str": self.arg2Str,
-            "arg3Str": self.arg3Str
+            "arg3Str": self.arg3Str,
+            "destReg": self.destReg,
+            "src1Reg": self.src1Reg,
+            "src2Reg": self.src2Reg
         }
 
     def print(self):

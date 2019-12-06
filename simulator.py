@@ -9,7 +9,7 @@ class State:
     cycle = 1
     R = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    def __init__(self, opcodes, dataval, addrs, arg1, arg2, arg3, numInstructs, opcodeStr, arg1Str, arg2Str, arg3Str):
+    def __init__(self, opcodes, dataval, addrs, arg1, arg2, arg3, numInstructs, opcodeStr, arg1Str, arg2Str, arg3Str, destReg, src1Reg, src2Reg):
         self.opcode = opcodes
         self.dataval = dataval
         self.address = addrs
@@ -21,6 +21,9 @@ class State:
         self.arg1Str = arg1Str
         self.arg2Str = arg2Str
         self.arg3Str = arg3Str
+        self.destReg = destReg
+        self.src1Reg = src1Reg
+        self.src2Reg = src2Reg
 
     def getIndexOfMemAddress(self, currAddr):
         index = (currAddr - 96)/4
@@ -87,7 +90,7 @@ class State:
 
 class Simulator:
 
-    def __init__(self, opcode, dataval, address, arg1, arg2, arg3, numInstructs, opcodeStr, arg1Str, arg2Str, arg3Str):
+    def __init__(self, opcode, dataval, address, arg1, arg2, arg3, numInstructs, opcodeStr, arg1Str, arg2Str, arg3Str, destReg, src1Reg, src2Reg):
         self.opcode = opcode
         self.dataval = dataval
         self.address = address
@@ -100,11 +103,15 @@ class Simulator:
         self.arg2Str = arg2Str
         self.arg3Str = arg3Str
         self.specialMask = MASKs.specialMask
+        self.destReg = destReg
+        self.src1Reg = src1Reg
+        self.src2Reg = src2Reg
 
     def run(self):
         foundBreak = False
         armState = State(self.opcode, self.dataval, self.address, self.arg1, self.arg2, self.arg3, self.numInstructs,
-                         self.opcodeStr, self.arg1Str, self.arg2Str, self.arg3Str)
+                         self.opcodeStr, self.arg1Str, self.arg2Str, self.arg3Str, self.destReg, self.src1Reg, self.src2Reg)
+
 
         while not foundBreak:
             jumpAddr = armState.PC
