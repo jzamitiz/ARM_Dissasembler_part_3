@@ -19,6 +19,7 @@ class ALU:
 
         print("opcodeStr: " + self.opcodeStr[i] + "\t" + "Instruction Index: " + str(i))
         print("Before -> preALUBuff: [" + str(self.preALUBuff[0]) + ", " + str(self.preALUBuff[1]) + "]")
+
         #R-TYPE
         if self.opcodeStr[i] == "ADD":
             self.postALUBuff = [self.R[self.arg1[i]] + self.R[self.arg2[i]], i]
@@ -41,10 +42,13 @@ class ALU:
         elif self.opcodeStr[i] == "ASR":
             self.postALUBuff = [self.R[self.arg1[i]] >> self.R[self.arg2[i]], i]
 
-        elif self.opcodeStr[i] == "EOR":
+        elif self.opcodeStr == "EOR":
             self.postALUBuff = [self.R[self.arg1[i]] ^ self.R[self.arg2[i]], i]
+
 
         self.preALUBuff[0] = self.preALUBuff[1]
         self.preALUBuff[1] = -1
 
+        print("postALUBuffer: " + str(self.postALUBuff))
         print("After -> preALUBuff: [" + str(self.preALUBuff[0]) + ", " + str(self.preALUBuff[1]) + "]")
+        print("\n")
