@@ -53,6 +53,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", R" + str(self.arg1[i]))
                 self.arg3Str.append(", R" + str(self.arg2[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif opcode[i] == 1624:  # SUB OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedR(instructions[i]))
                 self.opcodeStr.append("SUB")
@@ -62,6 +65,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", R" + str(self.arg1[i]))
                 self.arg3Str.append(", R" + str(self.arg2[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif opcode[i] == 1104:  # AND OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedR(instructions[i]))
                 self.opcodeStr.append("AND")
@@ -71,6 +77,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", R" + str(self.arg1[i]))
                 self.arg3Str.append(", R" + str(self.arg2[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif opcode[i] == 1360:  # ORR OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedR(instructions[i]))
                 self.opcodeStr.append("ORR")
@@ -80,6 +89,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", R" + str(self.arg1[i]))
                 self.arg3Str.append(", R" + str(self.arg2[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif opcode[i] == 1690:  # LSR OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedR(instructions[i]))
                 self.opcodeStr.append("LSR")
@@ -89,6 +101,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", R" + str(self.arg1[i]))
                 self.arg3Str.append(", #" + str(self.arg2[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif opcode[i] == 1691:  # LSL OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedR(instructions[i]))
                 self.opcodeStr.append("LSL")
@@ -98,6 +113,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", R" + str(self.arg1[i]))
                 self.arg3Str.append(", #" + str(self.arg2[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif opcode[i] == 1692:  # ASR OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedR(instructions[i]))
                 self.opcodeStr.append("ASR")
@@ -107,6 +125,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", R" + str(self.arg1[i]))
                 self.arg3Str.append(", R" + str(self.arg2[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif opcode[i] == 1872:  # EOR OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedR(instructions[i]))
                 self.opcodeStr.append("EOR")
@@ -116,6 +137,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", R" + str(self.arg1[i]))
                 self.arg3Str.append(", R" + str(self.arg2[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
                 """# B-Type"""
             elif 160 <= opcode[i] <= 191:  # B OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedB(instructions[i]))
@@ -126,6 +150,9 @@ class Disassembler:
                 self.arg1Str.append("#" + str(self.arg1[i]))
                 self.arg2Str.append("")
                 self.arg3Str.append("")
+                self.destReg.append(-18)
+                self.src1Reg.append(-17)
+                self.src2Reg.append(-16)
                 """# I-Type"""
             elif 1160 <= opcode[i] <= 1161:  # ADDI OPCODE RANGE
                 self.instrSpaced.append(SetUp.bin2StringSpacedI(instructions[i]))
@@ -136,6 +163,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg1[i]))
                 self.arg2Str.append(", R" + str(self.arg2[i]))
                 self.arg3Str.append(", #" + str(self.arg3[i]))
+                self.destReg.append(self.arg1[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg3[i])
             elif 1672 <= opcode[i] <= 1673:  # SUBI OPCODE RANGE
                 self.instrSpaced.append(SetUp.bin2StringSpacedI(instructions[i]))
                 self.opcodeStr.append("SUBI")
@@ -145,6 +175,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg1[i]))
                 self.arg2Str.append(", R" + str(self.arg2[i]))
                 self.arg3Str.append(", #" + str(self.arg3[i]))
+                self.destReg.append(self.arg1[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg3[i])
                 """"# D-Type"""
             elif opcode[i] == 1984:  # STUR OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedD(instructions[i]))
@@ -155,6 +188,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", [R" + str(self.arg2[i]))
                 self.arg3Str.append(", #" + str(self.arg1[i]) + "]")
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif opcode[i] == 1986:  # LDUR OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpacedD(instructions[i]))
                 self.opcodeStr.append("LDUR")
@@ -164,6 +200,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", [R" + str(self.arg2[i]))
                 self.arg3Str.append(", #" + str(self.arg1[i]) + "]")
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
                 """"# CB Type"""
             elif 1440 <= opcode[i] <= 1447:  # CBZ OPCODE RANGE
                 self.instrSpaced.append(SetUp.bin2StringSpacedCB(instructions[i]))
@@ -175,6 +214,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg2[i]))
                 self.arg2Str.append(", #" + str(self.arg1[i]))
                 self.arg3Str.append("")
+                self.destReg.append(self.arg2[i])
+                self.src1Reg.append(self.arg1[i])
+                self.src2Reg.append(-31)
             elif 1448 <= opcode[i] <= 1455:  # CBNZ OPCODE RANGE
                 self.instrSpaced.append(SetUp.bin2StringSpacedCB(instructions[i]))
                 self.opcodeStr.append("CBNZ")
@@ -185,6 +227,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg2[i]))
                 self.arg2Str.append(", #" + str(self.arg1[i]))
                 self.arg3Str.append("")
+                self.destReg.append(self.arg2[i])
+                self.src1Reg.append(self.arg1[i])
+                self.src2Reg.append(-31)
                 """"# IM Type"""
             elif 1684 <= opcode[i] <= 1687:  # MOVZ OPCODE RANGE
                 self.instrSpaced.append(SetUp.bin2StringSpacedIM(instructions[i]))
@@ -195,6 +240,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", " + str(self.arg2[i]))
                 self.arg3Str.append(", LSL " + str(self.arg1[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
             elif 1940 <= opcode[i] <= 1943:  # MOVK OPCODE RANGE
                 self.instrSpaced.append(SetUp.bin2StringSpacedIM(instructions[i]))
                 self.opcodeStr.append("MOVK")
@@ -204,6 +252,9 @@ class Disassembler:
                 self.arg1Str.append("R" + str(self.arg3[i]))
                 self.arg2Str.append(", " + str(self.arg2[i]))
                 self.arg3Str.append(", LSL " + str(self.arg1[i]))
+                self.destReg.append(self.arg3[i])
+                self.src1Reg.append(self.arg2[i])
+                self.src2Reg.append(self.arg1[i])
                 """NOP"""
             elif opcode[i] == 0:  # NOP OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpaced(instructions[i]))
@@ -214,6 +265,10 @@ class Disassembler:
                 self.arg1Str.append("")
                 self.arg2Str.append("")
                 self.arg3Str.append("")
+                self.destReg.append(-28)
+                self.src1Reg.append(-27)
+                self.src2Reg.append(-26)
+
                 """"# Break"""
             elif opcode[i] == 2038 and (int(instructions[i], base=2) & MASKS.specialMask) == 2031591:  # BREAK OPCODE
                 self.instrSpaced.append(SetUp.bin2StringSpaced(instructions[i]))
@@ -224,6 +279,9 @@ class Disassembler:
                 self.arg1Str.append("")
                 self.arg2Str.append("")
                 self.arg3Str.append("")
+                self.destReg.append(-11)
+                self.src1Reg.append(-12)
+                self.src2Reg.append(-13)
                 # print("breaking\n")
                 break
             else:
