@@ -54,10 +54,28 @@ class simClass:
         #self.outputFileName = SetUp.get_output_filename()
 
     def run(self):
-
-        simi = simClass(self.opcode, self.dataval, self.address, self.arg1, self.arg2, self.arg3, self.numInstructs,
-                         self.opcodeStr, self.arg1Str, self.arg2Str, self.arg3Str, self.destReg, self.src1Reg, self.src2Reg)
-        simi.run()
         for i in range(self.numInstructs):
             self.preALUBuff[0] = i
             self.ALU.run()
+
+class sim:
+
+    def __init__(self, opcode, dataval, address, arg1, arg2, arg3, numInstructs, opcodeStr, arg1Str, arg2Str, arg3Str, destReg, src1Reg, src2Reg):
+        self.opcode = opcode
+        self.dataval = dataval
+        self.address = address
+        self.numInstructs = numInstructs
+        self.arg1 = arg1
+        self.arg2 = arg2
+        self.arg3 = arg3
+        self.opcodeStr = opcodeStr
+        self.arg1Str = arg1Str
+        self.arg2Str = arg2Str
+        self.arg3Str = arg3Str
+        self.destReg = destReg
+        self.src1Reg = src1Reg
+        self.src2Reg = src2Reg
+
+
+    def run(self):
+        simi = simClass(self.opcode, self.dataval, self.address, self.arg1, self.arg2, self.arg3, self.numInstructs, self.opcodeStr, self.arg1Str, self.arg2Str, self.arg3Str, self.destReg, self.src1Reg, self.src2Reg)
