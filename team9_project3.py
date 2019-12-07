@@ -11,6 +11,6 @@ mydis.print()           #prints dissasembler
 mysimulator = simulator.Simulator(**output)   #passes all dissasembler return values to constructor of Simulator()
 mysimulator.run()
 
-mysim = sim.sim(**output)
+mysim = sim.simClass(**output)
 mysim.run()
 

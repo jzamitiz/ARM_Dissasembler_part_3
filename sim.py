@@ -8,10 +8,9 @@ import fetch
 
 global_cycle = 0
 
-class simClass:
+class simClass():
     def __init__(self, opcode, dataval, address, numInstructs, arg1, arg2, arg3, opcodeStr, arg1Str, arg2Str,
-                 arg3Str, destReg, src1Reg, src2Reg):
-        #self.instruction = instructions
+                 arg3Str, destReg, src1Reg, src2Reg, instructions):
         self.opcode = opcode
         self.opcodeStr = opcodeStr
         self.dataval = dataval
@@ -26,6 +25,7 @@ class simClass:
         self.destReg = destReg
         self.src1Reg = src1Reg
         self.src2Reg = src2Reg
+        self.instruction = instructions
         self.PC = 96
         self.cycle = 1
         self.cycleList = [0]
@@ -37,11 +37,11 @@ class simClass:
         self.preIssueBuff = [-1, -1, -1, -1]
 
         "functional units"
-        #self.WB = writeBack.WriteBack(self.R, self.postMemBuff, self.postALUBuff, destReg)
-        #self.cache = cache.Cache(numInstructions, instructions, dataval, address)
+        self.WB = writeBack.WriteBack(self.R, self.postMemBuff, self.postALUBuff, destReg)
+        self.cache = cache.Cache(numInstructs, instructions, dataval, address)
         self.ALU = alu.ALU(self.R, self.preALUBuff, self.postALUBuff, opcodeStr, arg1, arg2, arg3)
-        #self.MEM = memory.Memory(self.R, self.postMemBuff, self.preMemBuff, opcodeStr, arg1, arg2, arg3, dataval,
-        #                         address, self.numInstructions, self.cache, self.cycleList)
+        self.MEM = memory.Memory(self.R, self.postMemBuff, self.preMemBuff, opcodeStr, arg1, arg2, arg3, dataval,
+                                 address, self.numInstructs, self.cache, self.cycleList)
         #self.issue = issue.Issue(instructions, opcodeStr, dataval, address, arg1, arg2, arg3, self.numInstructions,
         #                        destReg, src1Reg, src2Reg, self.R, self.preIssueBuff, self.preMemBuff,
         #                        self.postMemBuff,
@@ -54,28 +54,39 @@ class simClass:
         #self.outputFileName = SetUp.get_output_filename()
 
     def run(self):
-        for i in range(self.numInstructs):
-            self.preALUBuff[0] = i
+        go = True
+        while go:
+            self.WB.run()
             self.ALU.run()
+            self.MEM.run()
+            # self.issue.run()
+            # go = self.fetch.run()
+            # self.printState()
+            self.cycle += 1
+        # for i in range(self.numInstructs):
+        #     self.preALUBuff[0] = i
+        #     self.ALU.run()
+# class sim:
+#
+#     def __init__(self, opcode, dataval, address, arg1, arg2, arg3, numInstructs, opcodeStr, arg1Str, arg2Str, arg3Str, destReg, src1Reg, src2Reg):
+#         self.opcode = opcode
+#         self.dataval = dataval
+#         self.address = address
+#         self.numInstructs = numInstructs
+#         self.arg1 = arg1
+#         self.arg2 = arg2
+#         self.arg3 = arg3
+#         self.opcodeStr = opcodeStr
+#         self.arg1Str = arg1Str
+#         self.arg2Str = arg2Str
+#         self.arg3Str = arg3Str
+#         self.destReg = destReg
+#         self.src1Reg = src1Reg
+#         self.src2Reg = src2Reg
+#
+#
+#     def run(self):
+#         simi = simClass(self.opcode, self.dataval, self.address, self.arg1, self.arg2, self.arg3, self.numInstructs, self.opcodeStr, self.arg1Str, self.arg2Str, self.arg3Str, self.destReg, self.src1Reg, self.src2Reg)
 
-class sim:
-
-    def __init__(self, opcode, dataval, address, arg1, arg2, arg3, numInstructs, opcodeStr, arg1Str, arg2Str, arg3Str, destReg, src1Reg, src2Reg):
-        self.opcode = opcode
-        self.dataval = dataval
-        self.address = address
-        self.numInstructs = numInstructs
-        self.arg1 = arg1
-        self.arg2 = arg2
-        self.arg3 = arg3
-        self.opcodeStr = opcodeStr
-        self.arg1Str = arg1Str
-        self.arg2Str = arg2Str
-        self.arg3Str = arg3Str
-        self.destReg = destReg
-        self.src1Reg = src1Reg
-        self.src2Reg = src2Reg
 
 
-    def run(self):
-        simi = simClass(self.opcode, self.dataval, self.address, self.arg1, self.arg2, self.arg3, self.numInstructs, self.opcodeStr, self.arg1Str, self.arg2Str, self.arg3Str, self.destReg, self.src1Reg, self.src2Reg)

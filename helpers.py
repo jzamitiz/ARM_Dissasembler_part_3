@@ -210,5 +210,7 @@ class SetUp:
                 if tmpIndex >= numInstructions:
                     tmpIndex -= numInstructions
 
+            return tmpIndex
+
         except ValueError:
             print("ERROR -- did not find mem address currAddr " + str(currAddr))

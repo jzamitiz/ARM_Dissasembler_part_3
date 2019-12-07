@@ -317,7 +317,8 @@ class Disassembler:
             "arg3Str": self.arg3Str,
             "destReg": self.destReg,
             "src1Reg": self.src1Reg,
-            "src2Reg": self.src2Reg
+            "src2Reg": self.src2Reg,
+            "instructions": instructions
         }
 
     def print(self):
